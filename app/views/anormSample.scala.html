@@ -1,0 +1,27 @@
+@(title: String, next: Call)
+
+@main( title, next ) {
+  <div class="slide">
+  <h1>@title</h1>
+  <small>Examples from the Play guide, with some omissions</small>
+  <code><pre>
+DB.withConnection { implicit c =>
+  val result: Boolean = SQL("Select 1").execute()
+
+val id: Option[Long] = 
+    SQL("insert into City(name, country) values ({name}, {country})")
+    .on('name -> "Cambridge", 'country -> "New Zealand").executeInsert()
+} 
+
+val countries = SQL("Select * from Country")().map(row =&gt;
+  row[String]("code") -> row[String]("name")
+).toList
+ 
+val countries = SQL("Select name,population from Country")().collect {
+  c<!-- -->ase Row("France", _) =&gt; France()
+  c<!-- -->ase Row(name:String, pop:Int) if(pop &gt; 1000000) =&gt; BigCountry(name)
+  c<!-- -->ase Row(name:String, _) =&gt; SmallCountry(name)      
+}
+  </pre></code>
+  </div>
+}

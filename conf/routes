@@ -21,11 +21,17 @@ GET     /slides/controllerReuseSample     controllers.Application.controllerReus
 GET     /slides/controllerReuseSample2    controllers.Application.controllerReuseSample2
 GET     /slides/console             controllers.Application.console
 GET     /slides/orm                 controllers.Application.orm
+GET     /slides/ormPlay             controllers.Application.ormPlay
+GET     /slides/anormSample         controllers.Application.anormSample
 GET     /slides/reactive            controllers.Application.reactive
 GET     /slides/closing             controllers.Application.closing
 
-GET     /examples/queryParam        controllers.Examples.queryParam(param:String)
-GET     /examples/queryParam/:param controllers.Examples.queryParam(param:String)
+GET     /examples/queryParam         controllers.Examples.queryParam(param:String)
+GET     /examples/queryParam/:param  controllers.Examples.queryParam(param:String)
+GET     /examples/syncEcho/:message  controllers.Examples.syncEcho(message:String)
+GET     /examples/asyncEcho/:message controllers.Examples.asyncEcho(message:String)
+GET     /examples/async/             controllers.Examples.asyncPage
+GET     /javascriptRoutes            controllers.Examples.javascriptRoutes
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

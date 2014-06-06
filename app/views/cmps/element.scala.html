@@ -1,23 +1,19 @@
 @( e: Element )
 
 @showItems( l:Items )={
-@l.title
+  @l.title
   <ul>
-    @for( emt <-l.subs ){
-      <li>@showElement(emt)</li>
-    }
+    @for( emt <-l.subs ){ <li>@showElement(emt)</li> }
   </ul>
 }
 
 @showText( t:Text )={<div class="text">@t.text</div>}
 
 @showSection( s:Section )={
-<div class="section">
-  <h3>@s.title</h3>
-  @for( emt <- s.subs ){
-    @showElement(emt)
-  }
-</div>
+  <div class="section">
+    <h3>@s.title</h3>
+    @for( emt <- s.subs ){ @showElement(emt) }
+  </div>
 }
 
 @showStatement( s:Statement )={
@@ -34,6 +30,7 @@
 @showTerm( t:Term )={
   <div class="term"><em>@t.text</em><div class="info">@t.info</div></div>
 }
+
 @showImg( i : Img )={
   <img class="Img" src="@routes.Assets.at("images/"+i.name+".png")" alt="@i.name" />
 }

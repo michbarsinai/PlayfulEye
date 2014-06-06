@@ -9,7 +9,6 @@ To run this, you need to install play or activator:
 http://www.playframework.com
 https://typesafe.com/activator
 
-Also, there's a presentor script at public/script.
-
+There's a presentor script at public/script, as some of the presentation involves showing live code at the editor and playing with the console.
 
 -- Michael

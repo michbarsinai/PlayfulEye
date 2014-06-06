@@ -188,8 +188,56 @@ object Application extends Controller {
     Ok( views.html.controllerResueSample2("Controller Reuse Sample - Reuse", routes.Application.console) )
   }
 
-  def console = TODO
-  def orm = TODO
-  def reactive = TODO
+  def console = Action {
+    val data = Seq(
+      Items("",
+        Text("Run the application"),
+        Text("Test the application"),
+        Text("Interactivly play with parts of the application")
+        ),
+        Statement("Demo")
+      )
+    Ok( views.html.listItems("Play Console", data, routes.Application.orm) )  
+  }
+  
+  def orm = Action {
+    val data = Seq(
+      Text("Object-Relational Mapping systems (ORMs) pledge to seamlessly map from relational DBs to objects"),
+      Items("Often end up with the constraints of both worlds",
+        Text("Impose artificial constrainst, such as argument-less constructors"),
+        Text("Stains the models with their presentation in a DB"),
+        Text("SQL types system inherently different from OO one")),
+      Items("Acting as if all the data is in memory - at a cost",
+        Text("Often referred to as the 'Object-Relational Impedance Mismatch'")))
+
+    Ok( views.html.listItems("Persistence Layer", data, routes.Application.ormPlay) )  
+  }
+
+  def ormPlay = Action {
+    val data = Seq(
+      Items("Play uses Anorm to access the database",
+        Text("Anorm is not an ORM"),
+        Items("Very opinionated - some quotes:",
+          Text("\"You don’t need another DSL to access relational databases\""),
+          Text("\"A type safe DSL to generate SQL is a mistake\""),
+          Text("\"Take Control of your SQL code\"")
+          )),
+      Items("Other options",
+        Text("Squeryl"),
+        Text("SLICK"),
+        Text("Expose the data source via JNDI and use JPA"))
+      )
+
+    Ok( views.html.listItems("Persistence in Play", data, routes.Application.anormSample) )  
+  }
+  def anormSample = Action {
+    Ok( views.html.anormSample("Anorm Sample", routes.Application.reactive) )  
+  }
+
+  def reactive = Action {
+    val data = Seq()
+    Ok("Working....")
+  }
   def closing = TODO
+
 }

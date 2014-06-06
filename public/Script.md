@@ -7,8 +7,9 @@
     - show *routes* slide
     - Present app
     - Break app, show error
+    - Add a TODO controller
     - While we're at it
-        + Zen/emmet
+        + Zen/emmet (`div>ul>li*3`, `lorem20`)
         + Show ST3's macros, such as `controller`
         + `shift`+`cmd`+`k` to change tag
 * This Is Play
@@ -22,8 +23,7 @@
     - Explain
     - Open `cmps/element.scala.html`
     - Explain
-
-TODO
 * Console
+    - `import models._`
     - Play w/ models
-    - render template
+    - render template, show that it's a function.
