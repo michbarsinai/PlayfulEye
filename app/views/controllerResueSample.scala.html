@@ -1,0 +1,31 @@
+@(title: String, next: Call)
+
+@main( title, next ) {
+  <div class="slide">
+  <h1>@title</h1>
+  <div><span style="color:green">Subclass the HTTP request</span>, 
+      Write the <span style="color:gray">boilerplate</span>, parametrise <span style="color:blue">payload</span></div>
+  <code><pre>
+  <span style="color:green">
+  class UserSessionRequest[A](val userSession: UserSession, request: Request[A]) extends WrappedRequest[A](request)
+  </span>
+  
+  <span style="color:gray">
+  object UserSessionAction extends ActionBuilder[UserSessionRequest] {
+  def invokeBlock[A](request: Request[A], block: (UserSessionRequest[A]) => Future[SimpleResult]) = {
+    request.session.get("uuid").map { uuid =>
+      Cache.getAs[UserSession](uuid).map{ userSession =>
+        <span style="color:blue">block(new UserSessionRequest(userSession, request))</span>
+      }.getOrElse {
+        Logger.warn("Huh?! has uuid of %s but no session".format(uuid) )
+        Future.successful( Redirect( routes.Application.index) )
+      }
+    }.getOrElse{
+      Logger.warn("User does not have a uuid" )
+      Future.successful( Redirect( routes.Application.index) )
+    }
+  }
+}</span>
+  </pre></code>
+  </div>
+}

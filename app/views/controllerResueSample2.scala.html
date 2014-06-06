@@ -1,0 +1,21 @@
+@(title: String, next: Call)
+
+@main( title, next ) {
+  <div class="slide">
+  <h1>@title</h1>
+  <div><span style="color:green">Reuse</span></div>
+  <code><pre>
+  def startInterview( questionnaireId:String ) = <span style="color:green;">UserSessionAction</span> { implicit req =>
+      val userSession = <span style="color:green;">request.userSession</span>
+      
+      <span class="badge">...process...</span>
+      
+      Ok( views.html.interview.question(questionnaireId, 
+                                         rte.getCurrentNode.asInstanceOf[AskNode],
+                                         updated.tags,
+                                         l.traversedNodes,
+                                         Seq()) )
+  }
+  </pre></code>
+  </div>
+}

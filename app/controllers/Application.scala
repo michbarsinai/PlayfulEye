@@ -19,7 +19,7 @@ object Application extends Controller {
                     Text("First Play App"),
                     Text("Template Engine"),
                     Text("Controllers"),
-                    Items( "Technicalities", Text("Console"), Text("Forms"), Text("ORM") ),
+                    Items( "Technicalities", Text("Console"), Text("ORM") ),
                     Text( "Reactive and Background Processing" ),
                     Text("Wrap-up")
                   ))
@@ -64,8 +64,9 @@ object Application extends Controller {
           Items("Not opinionated about ORM", Text("Some options built in")),
           Text("\"Scripty\", lightweight feeling"),
           Text("...But allows for massive scaling"),
+          Text("No magic"),
           Items("Web/Http centric", Text("e.g. Easy to make sensible urls")),
-          Items("Best template engine evah", Text("IMHO")),
+          Items("Best template engine evah!!!!!111!!1<3", Text("IMHO")),
           Items("Tools are still an issue", Text("I ended up with Sublime Text 3 and the Terminal")),
           Text("Changing/Evolving rapidly")
         )
@@ -129,7 +130,13 @@ object Application extends Controller {
         Text("Friendly error reporting")
       ))
 
-    Ok( views.html.listItems("Templating Engine", data, routes.Application.elementHierarchy) ) 
+    Ok( views.html.listItems("Templating Engine", data, routes.Application.thisPresentationIsPlay) ) 
+  }
+
+  def thisPresentationIsPlay = Action {
+    Ok( views.html.centered("Fork us on GitHub", 
+                            Seq(Statement("https://github.com/michbarsinai/PlayfulEye")),
+                            routes.Application.elementHierarchy))
   }
 
   def elementHierarchy = Action {
@@ -143,8 +150,45 @@ object Application extends Controller {
     Ok( views.html.centered("Templating Engine", data, routes.Application.controllerae) ) 
   }
 
-  def controllerae = TODO
-  def forms = TODO
+  def controllerae = Action {
+    val data = Seq(
+      Section("Generally",
+        Items("",
+          Text("Controllers have static methods (statelessness)"),
+          Text("Session is on the client side (but you may use the cache)")
+        )),
+      Section("Scala Back-End",
+        Items("",
+          Text("Can use functional composition"),
+          Text("Powerful re-use technique")))
+      );
+
+    Ok( views.html.listItems("Controllers", data, routes.Application.controllerReuse) )  
+  } 
+
+  def controllerReuse = Action {
+    val data=Seq(
+      Section("Tagging requests at DataTags.org",
+        Text("Using stateless HTTP protocol for interactive execution of a virtual tagging machine"),
+        Text("(Very stateful)"),
+        Items("For each request",
+          Text("Get serialized state from cache (may fail)"),
+          Text("Get a machine, load the state"),
+          Text("Execute next step"),
+          Text("Reply")
+          ))
+      )
+    Ok( views.html.listItems("Controller Reuse - True Story", data, routes.Application.controllerReuseSample) )  
+  }
+
+  def controllerReuseSample = Action {
+    Ok( views.html.controllerResueSample("Controller Reuse Sample - Prepare", routes.Application.controllerReuseSample2) )
+  }
+  def controllerReuseSample2 = Action {
+    Ok( views.html.controllerResueSample2("Controller Reuse Sample - Reuse", routes.Application.console) )
+  }
+
+  def console = TODO
   def orm = TODO
   def reactive = TODO
   def closing = TODO

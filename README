@@ -1,4 +1,15 @@
-This is your new Play application
+This is a presentation about the Play framework, created in the Play Framework
 =================================
 
-This file will be packaged with your application, when using `activator dist`.
+The presentation was created for Harvrad's Institute of Quantitative Social Science (IQSS).
+
+It focuses on the interesting parts of Play, especially in comparison to JEE (which also have interesting parts. You don't get to be that popular for being entirly bad, mind you).
+
+To run this, you need to install play or activator:
+http://www.playframework.com
+https://typesafe.com/activator
+
+Also, there's a presentor script at public/script.
+
+
+-- Michael
