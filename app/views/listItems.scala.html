@@ -1,0 +1,10 @@
+@(title: String, elements: Seq[Element], next: Call)
+
+@main( title, next ) {
+  <div class="slide">
+  <h1>@title</h1>
+  @for( emt <- elements ){
+    @cmps.element(emt)
+  }
+  </div>
+}

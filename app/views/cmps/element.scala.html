@@ -1,0 +1,53 @@
+@( e: Element )
+
+@showItems( l:Items )={
+@l.title
+  <ul>
+    @for( emt <-l.subs ){
+      <li>@showElement(emt)</li>
+    }
+  </ul>
+}
+
+@showText( t:Text )={<div class="text">@t.text</div>}
+
+@showSection( s:Section )={
+<div class="section">
+  <h3>@s.title</h3>
+  @for( emt <- s.subs ){
+    @showElement(emt)
+  }
+</div>
+}
+
+@showStatement( s:Statement )={
+  <div class="statement">@s.text</div>
+}
+
+@showSideBySide( sbs: SideBySide ) = {
+  <div class="sideBySide">
+    <div class="sbs-side">@showElement(sbs.l)</div>
+    <div class="sbs-side">@showElement(sbs.r)</div>
+  </div>
+}
+
+@showTerm( t:Term )={
+  <div class="term"><em>@t.text</em><div class="info">@t.info</div></div>
+}
+@showImg( i : Img )={
+  <img class="Img" src="@routes.Assets.at("images/"+i.name+".png")" alt="@i.name" />
+}
+
+@showElement(emt:Element) = {
+  @emt match {
+    case sbs:SideBySide => {@showSideBySide(sbs)}
+    case s:Statement => { @showStatement(s) }
+    case s:Section => { @showSection(s) }
+    case l:Items => { @showItems(l) }
+    case t:Text => { @showText(t) }
+    case t:Term => { @showTerm(t) }
+    case i:Img => { @showImg(i) }
+  }
+}
+
+@showElement( e )

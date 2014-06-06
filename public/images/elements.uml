@@ -1,0 +1,38 @@
+@startuml
+
+package models
+
+class Element {
+  + boxed()
+}
+
+class Section {
+  title: String
+  subs: Element[]
+} 
+class Text {
+  text: String
+}
+class Items {
+  title: String
+  subs:Element[] 
+}
+
+class Statement{
+ text:String 
+}
+class Term{
+  text:String
+  info:String
+} 
+
+Element <|-- Section
+Element <|-- Text
+Element <|-- Items
+Element <|-- Statement
+Element <|-- Term
+
+Section o--> Element
+Items o--> Element
+
+@enduml

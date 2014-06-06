@@ -1,0 +1,38 @@
+@(title: String, next:Call)(content: Html)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!--[if lt IE 9]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@title</title>
+
+    <link href="@routes.Assets.at("css/bootstrap.min.css")" rel="stylesheet">
+    <!--link href="/assets/css/bootstrap-theme.min.css" rel="stylesheet"-->
+    <link href="@routes.Assets.at("css/font-awesome.min.css")" rel="stylesheet">
+    <link href="@routes.Assets.at("css/main.min.css")" rel="stylesheet">
+
+  </head>
+  <body>
+
+    @content
+    
+  <script src="@routes.Assets.at("js/jquery.min.js")"></script>
+  <script src="@routes.Assets.at("js/bootstrap.min.js")"></script>
+  <script>
+    $(document).ready( function(){ 
+      $("a[data-toggle='popover']").popover(); 
+      $("a[data-toggle='tooltip']").tooltip();
+
+      window.onkeyup = function(e) {
+        var key = e.keyCode ? e.keyCode : e.which;
+        if ( key==32 ) {
+          window.location.href="@next";
+        }
+      };
+    } );
+  </script>
+  </body>
+</html>

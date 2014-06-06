@@ -1,0 +1,24 @@
+@(title: String, next: Call)
+
+@main( title, next ) {
+  <div class="slide">
+  <h1>@title</h1>
+  <code><pre>
+    
+GET     /                           controllers.Application.index
+GET     /catalog                    controllers.Application.questionnaireCatalog
+GET     /test/:name/:count          controllers.Test.nameCount(name, count: Int)
+GET     /interviews/:questionnaireId/intro           controllers.Interview.interviewIntro(questionnaireId)
+GET     /interviews/ask/:nodeId                      controllers.Interview.askNode(nodeId)
+POST    /interviews/revisit/:nodeId                  controllers.Interview.revisit(nodeId)
+GET     /interviews/:questionnaireId/accept/         controllers.Interview.accept(questionnaireId)
+GET     /examples/queryParam        controllers.Examples.queryParam(<strong style="color:green">param:String</strong>)
+POST    /interviews/<strong style="color:blue">:questionnaireId</strong>/answer/:nodeId  controllers.Interview.answer(<strong style="color:blue">questionnaireId</strong>, nodeId)
+
+# Map static resources from the /public folder to the /assets URL path
+GET  /assets/*file      controllers.Assets.at(path="/public", file)
+<strong>GET  /javascriptRoutes  controllers.Application.javascriptRoutes</strong>
+
+  </pre></code>
+  </div>
+}

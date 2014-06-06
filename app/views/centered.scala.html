@@ -1,0 +1,15 @@
+@(title: String, elements: Seq[Element], next: Call)
+
+@main( title, next ) {
+  <div class="slide">
+    <table style="width:100%; height:100%">
+      <tr>
+        <td style="vertical-align: middle; text-align: center;">
+          @for( emt <- elements ){
+            @cmps.element(emt)
+          }
+        </td>
+      </tr>
+    </table>
+  </div>
+}
