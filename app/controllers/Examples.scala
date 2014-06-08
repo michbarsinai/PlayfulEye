@@ -43,7 +43,7 @@ def javascriptRoutes = Action { implicit request =>
 
  def longOperation( message:String ) = {
   val start = new Date
-  Thread.sleep( 1000 )
+  Thread.sleep( 10000 )
   val end = new Date
   val fmt = new SimpleDateFormat("hh:mm:ss")
   "%s | %s -> %s".format(message, fmt.format(start), fmt.format(end))

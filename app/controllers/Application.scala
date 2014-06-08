@@ -126,7 +126,9 @@ object Application extends Controller {
           Text("Collections"),
           Text("Almost all other language features")
         ),
-        Text("Component reuse via function calls"),
+        Items("Templates become functions",
+          Text("Great news for reuse"),
+          Text("Reminder: in Scala, functions are objects")),
         Text("Friendly error reporting")
       ))
 
@@ -230,6 +232,7 @@ object Application extends Controller {
 
     Ok( views.html.listItems("Persistence in Play", data, routes.Application.anormSample) )  
   }
+
   def anormSample = Action {
     Ok( views.html.anormSample("Anorm Sample", routes.Application.reactive) )  
   }
@@ -238,6 +241,7 @@ object Application extends Controller {
     val data = Seq()
     Ok("Working....")
   }
+  
   def closing = TODO
 
 }
