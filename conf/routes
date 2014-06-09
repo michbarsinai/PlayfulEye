@@ -24,13 +24,17 @@ GET     /slides/orm                 controllers.Application.orm
 GET     /slides/ormPlay             controllers.Application.ormPlay
 GET     /slides/anormSample         controllers.Application.anormSample
 GET     /slides/reactive            controllers.Application.reactive
+GET     /slides/reactiveSample      controllers.Application.reactiveSample
 GET     /slides/closing             controllers.Application.closing
+GET     /slides/final/              controllers.Application.finalSlide
 
 GET     /examples/queryParam         controllers.Examples.queryParam(param:String)
 GET     /examples/queryParam/:param  controllers.Examples.queryParam(param:String)
 GET     /examples/syncEcho/:message  controllers.Examples.syncEcho(message:String)
 GET     /examples/asyncEcho/:message controllers.Examples.asyncEcho(message:String)
 GET     /examples/async/             controllers.Examples.asyncPage
+GET     /examples/reactiveLength/    controllers.Examples.reactiveLength
+
 GET     /javascriptRoutes            controllers.Examples.javascriptRoutes
 
 # Map static resources from the /public folder to the /assets URL path

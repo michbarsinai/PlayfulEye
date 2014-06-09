@@ -119,7 +119,7 @@ object Application extends Controller {
 
   def templates = Action {
     val data = Seq(
-      Items("Templates are Scala code",
+      Items("Templates use Scala code",
         Text("Static typing (Compiler's got your back)"),
         Items("Leverage scala's:",
           Text("Control structures"),
@@ -128,11 +128,12 @@ object Application extends Controller {
         ),
         Items("Templates become functions",
           Text("Great news for reuse"),
-          Text("Reminder: in Scala, functions are objects")),
+          Text("Reminder: in Scala, functions are objects"),
+          Text("Specifically, objects with an apply() method")),
         Text("Friendly error reporting")
       ))
 
-    Ok( views.html.listItems("Templating Engine", data, routes.Application.thisPresentationIsPlay) ) 
+    Ok( views.html.listItems("Template Engine", data, routes.Application.thisPresentationIsPlay) ) 
   }
 
   def thisPresentationIsPlay = Action {
@@ -149,7 +150,7 @@ object Application extends Controller {
       Text("How would the template look?")
       )
 
-    Ok( views.html.centered("Templating Engine", data, routes.Application.controllerae) ) 
+    Ok( views.html.centered("Template Engine", data, routes.Application.controllerae) ) 
   }
 
   def controllerae = Action {
@@ -195,7 +196,7 @@ object Application extends Controller {
       Items("",
         Text("Run the application"),
         Text("Test the application"),
-        Text("Interactivly play with parts of the application")
+        Text("Interactively play with parts of the application")
         ),
         Statement("Demo")
       )
@@ -206,7 +207,7 @@ object Application extends Controller {
     val data = Seq(
       Text("Object-Relational Mapping systems (ORMs) pledge to seamlessly map from relational DBs to objects"),
       Items("Often end up with the constraints of both worlds",
-        Text("Impose artificial constrainst, such as argument-less constructors"),
+        Text("Impose artificial constraints, such as argument-less constructors"),
         Text("Stains the models with their presentation in a DB"),
         Text("SQL types system inherently different from OO one")),
       Items("Acting as if all the data is in memory - at a cost",
@@ -238,10 +239,44 @@ object Application extends Controller {
   }
 
   def reactive = Action {
-    val data = Seq()
-    Ok("Working....")
+    val data = Seq(
+      Statement("Event-Driven, Scalable, Resilient, Responsive"),
+      Items("As defined in the 'Reactive Manifesto'",
+        Text("http://www.reactivemanifesto.org"),
+        Text("Different from traditional meaning of 'real-time'")),
+      Text("Here, boils down to:"),
+      Statement("Don't block any threads"),
+      Text("So we use Futures and Promises")
+    )
+
+    Ok( views.html.listItems("Reactive Systems", data, routes.Application.reactiveSample) )
   }
   
-  def closing = TODO
+  def reactiveSample = Action {
+    Ok(views.html.reactiveSample("Reactive Sample", routes.Application.closing))
+  }
 
+  def closing = Action {
+    val data = Seq(
+      Items("Play is very different from JEE",
+        Text("More aligned with the Web, and less with the Java world"),
+        Text("But still relying on the JVM community"),
+        Text("Scripty, yet powerful and type-safe"),
+        Text("Thanks to non-blocking-ness makes it easy to scale"))
+    )
+
+    Ok( views.html.listItems("In Conclusion", data, routes.Application.finalSlide) )
+  }
+
+  def finalSlide = Action {
+    val data = Seq(
+      Items("Sources",
+        Text("Play for Scala,  Hilton, Bakker, Canedo. Manning 2014"),
+        Text("Play Framework documentation (http://www.playframework.com/documentation/2.3.x/Home)"),
+        Text("James Ward's site (http://www.jamesward.com)"),
+        Text("Stackoveflow, general hacking on DataTags.org, this presentation and other projects")),
+      Statement("Thank You"),
+      Text("IQSS @ Harvard University, 2014"))
+    Ok( views.html.listItems("", data, routes.Application.finalSlide) )
+  }
 }

@@ -1,12 +1,12 @@
 package controllers
-
+import play.api.Play.current
 import play.api._
 import play.api.mvc._
 import play.api.data.Forms._
 import play.api.data._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.Routes
-
+import play.api.libs.ws.WS
 import scala.concurrent._
 
 import java.util.Date
@@ -32,7 +32,17 @@ object Examples extends Controller {
  def asyncPage = Action {
   Ok( views.html.async() )
  }
-def javascriptRoutes = Action { implicit request =>
+
+def reactiveLength = Action.async {
+  val futureZelig = WS.url( "http://datascience.iq.harvard.edu/zelig" ).get()
+  val futureDataverse = WS.url( "http://datascience.iq.harvard.edu/dataverse" ).get()
+  for {
+    zelig <- futureZelig
+    dataverse <- futureDataverse 
+  } yield Ok( if (zelig.body.length>dataverse.body.length) {"Zelig"} else {"Dataverse"})
+}
+
+  def javascriptRoutes = Action { implicit request =>
     Ok(
       Routes.javascriptRouter("jsRoutes")(
         routes.javascript.Examples.syncEcho,
