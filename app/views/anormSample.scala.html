@@ -5,19 +5,19 @@
   <h1>@title</h1>
   <small>Examples from the Play guide, with some omissions</small>
   <code><pre>
-DB.withConnection { implicit c =>
+<div class="note pull-right">Simple SQL selection</div>DB.withConnection { implicit c =>
   val result: Boolean = SQL("Select 1").execute()
 
-val id: Option[Long] = 
+val id: Option[Long] = <div class="note pull-right">Variable Binding</div>
     SQL("insert into City(name, country) values ({name}, {country})")
     .on('name -> "Cambridge", 'country -> "New Zealand").executeInsert()
 } 
 
-val countries = SQL("Select * from Country")().map(row =&gt;
+val countries = SQL("Select * from Country")().map(row =&gt;<div class="note pull-right">Retrieving a list</div>
   row[String]("code") -> row[String]("name")
 ).toList
  
-val countries = SQL("Select name,population from Country")().collect {
+ <div class="note pull-right">Pattern matching is a powerful result parsing aid</div>val countries = SQL("Select name,population from Country")().collect {
   c<!-- -->ase Row("France", _) =&gt; France()
   c<!-- -->ase Row(name:String, pop:Int) if(pop &gt; 1000000) =&gt; BigCountry(name)
   c<!-- -->ase Row(name:String, _) =&gt; SmallCountry(name)      
