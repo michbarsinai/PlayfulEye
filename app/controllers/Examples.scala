@@ -19,11 +19,11 @@ object Examples extends Controller {
   Ok( views.html.output("Query Parameter Result", theParam) )
  } 
 
+/// The two actions below are exactly the same.
  def syncEcho( message:String ) = Action {
   val result = longOperation(message)
   Ok( result )
  }
-
  def asyncEcho( message:String ) = Action.async {
   val fResult:Future[String] = Future( longOperation(message) )
   fResult.map( result => Ok(result) )
@@ -42,6 +42,7 @@ def reactiveLength = Action.async {
   } yield Ok( if (zelig.body.length>dataverse.body.length) {"Zelig"} else {"Dataverse"})
 }
 
+  // send the router as javascript code.
   def javascriptRoutes = Action { implicit request =>
     Ok(
       Routes.javascriptRouter("jsRoutes")(

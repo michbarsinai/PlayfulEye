@@ -11,8 +11,8 @@ def reactiveLength = Action.async {
   val futureZelig = WS.url( "http://datascience.iq.harvard.edu/zelig" ).get()<span class="note pull-right">Handle to a future value</span>
   val futureDataverse = WS.url( "http://datascience.iq.harvard.edu/dataverse" ).get()
   for {
-    zelig &lt;- futureZelig <span class="note pull-right">Future value filled</span>
-    dataverse &lt;- futureDataverse <span class="note pull-right">Nondeterministic ordering here</span>
+    zelig &lt;- futureZelig <span class="note pull-right">Value filled,Nondeterministic order</span>
+    dataverse &lt;- futureDataverse
   } yield Ok( if (zelig.body.length>dataverse.body.length) {"Zelig"} else {"Dataverse"})
 }
   </pre></code>

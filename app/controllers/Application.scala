@@ -171,7 +171,7 @@ object Application extends Controller {
 
   def controllerReuse = Action {
     val data=Seq(
-      Section("Tagging requests at DataTags.org",
+      Section("At an IQSS Project:",
         Text("Using stateless HTTP protocol for interactive execution of a virtual tagging machine"),
         Text("(Very stateful)"),
         Items("For each request",
@@ -226,8 +226,9 @@ object Application extends Controller {
           Text("\"Take Control of your SQL code\"")
           )),
       Items("Other options",
-        Text("Squeryl"),
-        Text("SLICK"),
+        Text("Squeryl (a Scala-based ORM)"),
+        Text("SLICK (Scala based, more row-level than full ORM)"),
+        Text("Ebean (Java based ORM, more lightweight than JPA)"),
         Text("Expose the data source via JNDI and use JPA"))
       )
 
@@ -262,7 +263,7 @@ object Application extends Controller {
         Text("More aligned with the Web, and less with the Java world"),
         Text("But still relying on the JVM community"),
         Text("Scripty, yet powerful and type-safe"),
-        Text("Thanks to non-blocking-ness makes it easy to scale"))
+        Text("Easy to write non-blocking code, thus easy to scale"))
     )
 
     Ok( views.html.listItems("In Conclusion", data, routes.Application.finalSlide) )
@@ -274,7 +275,7 @@ object Application extends Controller {
         Text("Play for Scala,  Hilton, Bakker, Canedo. Manning 2014"),
         Text("Play Framework documentation (http://www.playframework.com/documentation/2.3.x/Home)"),
         Text("James Ward's site (http://www.jamesward.com)"),
-        Text("Stackoveflow, general hacking on DataTags.org, this presentation and other projects")),
+        Text("Stackoveflow, general hacking")),
       Statement("Thank You"),
       Text("IQSS @ Harvard University, 2014"))
     Ok( views.html.listItems("", data, routes.Application.finalSlide) )
